@@ -1,0 +1,26 @@
+{
+  "name": "elite-dangerous-commodity-api",
+  "version": "0.1.0",
+  "description": "An api for finding commodities in Elite Dangerous",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jgable/EliteDangerousCommodityAPI.git"
+  },
+  "author": "Jacob Gable <jacob.gable@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/jgable/EliteDangerousCommodityAPI/issues"
+  },
+  "homepage": "https://github.com/jgable/EliteDangerousCommodityAPI#readme",
+  "dependencies": {
+    "hapi": "^13.4.1",
+    "hapi-sequelize": "^3.0.1",
+    "sequelize": "^3.23.3"
+  },
+  "engines": { "node" : ">=0.6.2" }
+}
