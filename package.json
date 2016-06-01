@@ -18,9 +18,15 @@
   },
   "homepage": "https://github.com/jgable/EliteDangerousCommodityAPI#readme",
   "dependencies": {
+    "JSONStream": "^1.1.1",
+    "event-stream": "^3.3.2",
     "hapi": "^13.4.1",
     "hapi-sequelize": "^3.0.1",
-    "sequelize": "^3.23.3"
+    "sequelize": "^3.23.3",
+    "sqlite3": "^3.1.4",
+    "sqlizr": "^1.2.0"
   },
-  "engines": { "node" : ">=0.6.2" }
+  "engines": {
+    "node": ">=0.6.2"
+  }
 }
