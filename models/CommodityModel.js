@@ -6,5 +6,9 @@ module.exports = (sequelize, TYPES) => {
     is_rare: {type: TYPES.BOOLEAN},
   }, {underscored: true});
 
+  Commodity.associate = ({System, StationCommodityListing}) => {
+    Commodity.belongsToMany(System, {through: StationCommodityListing});
+  };
+
   return Commodity;
 };

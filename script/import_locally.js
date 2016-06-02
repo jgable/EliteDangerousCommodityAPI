@@ -1,4 +1,9 @@
-const {CommodityImporter, SystemImporter, StationImporter} = require('../importers');
+const {
+  CommodityImporter,
+  SystemImporter,
+  StationImporter,
+  StationCommodityListingImporter
+} = require('../importers');
 const path = require('path');
 const {sequelize} = require('../models');
 
@@ -9,6 +14,7 @@ sequelize
   .then(() => CommodityImporter.FromFile(dataFilePath('commodities.json')).import())
   .then(() => SystemImporter.FromFile(dataFilePath('systems.json')).import())
   .then(() => StationImporter.FromFile(dataFilePath('stations.json')).import())
+  .then(() => StationCommodityListingImporter.FromFile(dataFilePath('listings.csv')).import())
   .then(() => console.log('Done!'))
   .catch((err) => {
     console.log('Error');

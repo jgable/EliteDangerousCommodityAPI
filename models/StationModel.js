@@ -61,8 +61,8 @@ module.exports = (sequelize, TYPES) => {
     */
   }, {underscored: true});
 
-  Station.associate = ({System}) => {
-    // TODO: StationCommodities
+  Station.associate = ({Commodity, StationCommodityListing}) => {
+    Station.belongsToMany(Commodity, {through: StationCommodityListing});
   };
 
   return Station;
