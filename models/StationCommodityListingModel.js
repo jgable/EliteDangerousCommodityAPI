@@ -6,7 +6,7 @@ module.exports = (sequelize, TYPES) => {
     sell_price: {type: TYPES.DECIMAL},
     demand: {type: TYPES.DECIMAL},
     collected_at: {type: TYPES.INTEGER},
-    update_count: {type: TYPES.INTEGER}
+    update_count: {type: TYPES.INTEGER},
   }, {underscored: true});
 
   return StationCommodityListing;

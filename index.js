@@ -1,9 +1,10 @@
-'use strict';
-
 const boom = require('boom');
 const Hapi = require('hapi');
+const _ = require('lodash');
 
-const {System, Commodity, sequelize} = require('./models');
+const CommoditySearch = require('./lib/CommoditySearch');
+
+const {System, sequelize} = require('./models');
 
 // Create a server with a host and port
 const server = new Hapi.Server();
@@ -18,7 +19,7 @@ server.route({
   path: '/',
   handler: (request, reply) => {
     return reply('Elite Dangerous Commodity Finder; powered by eddb.io');
-  }
+  },
 });
 
 // Add the station search route
@@ -41,17 +42,20 @@ server.route({
       attributes: ['id', 'name', 'x', 'y', 'z', ...fields],
       where: {
         name: {
-          $like: `%${name}%`
-        }
+          $like: `%${name}%`,
+        },
       },
       limit: 10,
       order: 'name ASC',
     });
 
     query
-      .then(stations => reply({stations}))
+      .then(systems => systems.map(
+        s => _.extend(s, {distanceToSol: s.distanceToSol})
+      ))
+      .then(systems => reply({systems}))
       .catch(err => reply(boom.badImplementation(err.message)));
-  }
+  },
 });
 
 // Add the commodity find route
@@ -59,14 +63,22 @@ server.route({
   method: 'GET',
   path: '/commodities/search',
   handler: (request, reply) => {
-    return reply({stations: [], systems: [], commodities: [], results: []});
-  }
+    const {originSystemId, commodityId, range} = request.query;
+
+    new CommoditySearch(originSystemId, commodityId, range)
+      .search()
+      .then(({stations, systems, commodities, results}) => {
+        reply({stations, systems, commodities, results});
+      })
+      .catch(err => {
+        reply(boom.badImplementation(err.message));
+      });
+  },
 });
 
 sequelize.sync()
   .then(() => server.start())
-  .then(() => console.log('Server running at:', server.info.uri))
+  .then(() => console.log('Server running at:', server.info.uri)) // eslint-disable-line
   .catch((err) => {
-    console.log('Problem starting the server');
     throw err;
   });
