@@ -12,10 +12,9 @@ class JSONImporter extends Importer {
   }
 
   handleItem(item) {
-    console.log('upsert: ', item);
     this.Model.upsert(item);
   }
-};
+}
 
 class JSONFileImporter extends JSONImporter {
   constructor(Model, filePath) {

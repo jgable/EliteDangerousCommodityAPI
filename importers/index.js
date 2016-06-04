@@ -12,7 +12,7 @@ const parseListingLine = item => {
     sell_price,
     demand,
     collected_at,
-    update_count
+    update_count,
   } = item;
 
   return {
@@ -44,5 +44,5 @@ module.exports = {
   StationCommodityListingImporter: {
     FromFile: CSVImporter.FromFile.bind(null, StationCommodityListing, parseListingLine),
     FromWeb: CSVImporter.FromWeb.bind(null, StationCommodityListing, parseListingLine),
-  }
+  },
 }

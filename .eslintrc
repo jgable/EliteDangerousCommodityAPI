@@ -1,0 +1,14 @@
+{
+  "env": {
+    "node": true,
+    "es6": true,
+  },
+  "parserOptions": {
+    "ecmaVersion": 6
+  },
+  "extends": "eslint:recommended",
+  "rules": {
+    "comma-dangle": [2, "always-multiline"],
+    "comma-spacing": [1, {"before": false, "after": true}],
+  }
+}

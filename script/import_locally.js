@@ -2,7 +2,7 @@ const {
   CommodityImporter,
   SystemImporter,
   StationImporter,
-  StationCommodityListingImporter
+  StationCommodityListingImporter,
 } = require('../importers');
 const path = require('path');
 const {sequelize} = require('../models');
@@ -15,8 +15,8 @@ sequelize
   .then(() => SystemImporter.FromFile(dataFilePath('systems.json')).import())
   .then(() => StationImporter.FromFile(dataFilePath('stations.json')).import())
   .then(() => StationCommodityListingImporter.FromFile(dataFilePath('listings.csv')).import())
-  .then(() => console.log('Done!'))
+  .then(() => console.log('Done!')) // eslint-disable-line
   .catch((err) => {
-    console.log('Error');
-    console.log(err);
+    console.log('Error'); // eslint-disable-line
+    console.log(err); // eslint-disable-line
   });

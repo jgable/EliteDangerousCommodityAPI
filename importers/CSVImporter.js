@@ -1,7 +1,6 @@
 const csv = require('csv-streamify');
 const fs = require('fs');
 const http = require('http');
-const JSONStream = require('JSONStream');
 
 const Importer = require('./Importer');
 
@@ -18,7 +17,7 @@ class CSVImporter extends Importer {
 
     this.Model.upsert(parsed);
   }
-};
+}
 
 class CSVFileImporter extends CSVImporter {
   constructor(Model, lineParser, filePath) {
