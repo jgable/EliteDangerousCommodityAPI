@@ -36,3 +36,6 @@ node_modules
 data/*.json
 data/*.csv
 data/*.sqlite
+
+# config info
+config/config.json

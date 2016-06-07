@@ -67,8 +67,8 @@ server.route({
 
     new CommoditySearch(originSystemId, commodityId, range)
       .search()
-      .then(({stations, systems, commodities, results}) => {
-        reply({stations, systems, commodities, results});
+      .then(({stations, systems, commodity, results}) => {
+        reply({stations, systems, commodities: [commodity], results});
       })
       .catch(err => {
         reply(boom.badImplementation(err.message));
